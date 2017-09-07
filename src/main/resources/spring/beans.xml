@@ -1,13 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
 	<!-- bean 설정 파일 -->
 	<bean class="com.example.spring.Dept">
 		<property name="deptno" value="20" />
 		<property name="dname" value="총무부" />
 		<property name="loc" value="부산" />
-
 	</bean>
+
+<!-- DataSource -->
+	<!-- 데이터베이스 연결하는 방법 2: BasicDataSource 설정을 bean 파일에서 하는거-->
+	<bean id="dataSource" class ="org.apache.commons.dbcp2.BasicDataSource">
+		<property name="driverClassName" value ="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/world" />
+		<property name ="username" value= "jspbook" />
+		<property name="password" value="1234" />
+	</bean>
+
+<!-- CityDao -->
+	<!--  bean 생성시에 커스텀 init메소드 destroy메소드 -->
+	<bean class ="com.example.db.CityDao" init-method="init" destroy-method="close">
+	
+	<!-- Dependency Injection : CityDao를 동작시키기 위해서는 BasicDataSource가 필요하다 -->
+		<property name="dataSource" ref="dataSource" />
+	
+	</bean>
+<!-- CountryDao --> 
+<bean class="com.example.db.CountryDao" >
+	<property name="dataSource" ref="dataSource"/>
+</bean>
+
+<!-- spring이 어노테이션을 알아서 인식하도록 -->
+<context:annotation-config />
 </beans>
