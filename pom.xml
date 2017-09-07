@@ -7,7 +7,6 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
-
 	<build>
 		<finalName>spring03</finalName>
 		<plugins>
@@ -28,7 +27,7 @@
 				<executions>
 					<execution>
 						<id>scala-compile</id>
-						<phase>process-resources</phase>
+						<phase>compile</phase>
 						<goals>
 							<goal>add-source</goal>
 							<goal>compile</goal>
@@ -36,7 +35,7 @@
 					</execution>
 					<execution>
 						<id>scala-test-compile</id>
-						<phase>process-test-resources</phase>
+						<phase>testCompile</phase>
 						<goals>
 							<goal>testCompile</goal>
 						</goals>

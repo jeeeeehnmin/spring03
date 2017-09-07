@@ -9,7 +9,7 @@ import lombok.ToString;
 @ToString
 @Getter
 @Setter
-@AllArgsConstructor				//필드기반 생성자 만들어줌
+@AllArgsConstructor // 필드기반 생성자 만들어줌
 @NoArgsConstructor
 public class Dept {
 
@@ -17,4 +17,13 @@ public class Dept {
 	String dname;
 	String loc;
 
+	public void print() {
+		System.out.println("***" + toString());
+	}
+
+	public void print2() {
+		System.out.println
+
+		("***222" + toString());
+	}
 }
