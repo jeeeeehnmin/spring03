@@ -20,7 +20,7 @@ public class Dept {
 	public Dept() {
 		
 		System.out.println("####");
-		System.out.println("Dep()...");
+		System.out.println("Dept()...");
 		System.out.println("####");
 		
 	}
